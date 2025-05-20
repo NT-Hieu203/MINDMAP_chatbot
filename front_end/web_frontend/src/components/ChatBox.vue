@@ -12,20 +12,6 @@
           <template v-if="msg.type === 'text'">
             {{ msg.text }}
           </template>
-          <template v-if="msg.type === 'youtube-group'">
-            <hr>
-            <div class="p-2 fw-bold">Video liên quan:</div>
-            <div class="youtube-container">
-              <iframe 
-                v-for="(url, idx) in msg.urls" 
-                :key="idx" 
-                :src="url" 
-                class="youtube-video" 
-                frameborder="0" 
-                allowfullscreen>
-              </iframe>
-            </div>
-          </template>
         </div>
       </div>
     </div>
@@ -67,23 +53,6 @@ export default {
         if (response.response) {
           messages.value.push({ text: response.response, sender: "bot", type: "text" });
         }
-
-        // Nếu có đúng 3 link YouTube, nhóm lại thành một hàng ngang
-        if (response.link && response.link.length === 3 && response.link.every(isYouTubeLink)) {
-          messages.value.push({
-            urls: response.link.map(convertToEmbedURL),
-            sender: "bot",
-            type: "youtube-group"
-          });
-        } else if (response.link) {
-          response.link.forEach(link => {
-            if (isYouTubeLink(link)) {
-              messages.value.push({ embedUrl: convertToEmbedURL(link), sender: "bot", type: "youtube" });
-            } else {
-              messages.value.push({ text: link, sender: "bot", type: "text" });
-            }
-          });
-        }
       } catch (error) {
         console.error("Lỗi khi gửi tin nhắn:", error);
       }
@@ -101,25 +70,12 @@ export default {
       });
     }
 
-    // Kiểm tra xem có phải link YouTube không
-    function isYouTubeLink(url) {
-      return url.includes("youtube.com/watch") || url.includes("youtu.be/");
-    }
-
-    // Chuyển link YouTube thành link nhúng
-    function convertToEmbedURL(url) {
-      const match = url.match(/(?:youtu\.be\/|youtube\.com\/watch\?v=)([a-zA-Z0-9_-]+)/);
-      return match ? `https://www.youtube.com/embed/${match[1]}` : url;
-    }
-
     return { 
       messages, 
       newMessage, 
       sendMessage: sendMessageHandler, 
       messagesContainer, 
-      isLoading,
-      isYouTubeLink,
-      convertToEmbedURL
+      isLoading
     };
   }
 };
@@ -181,22 +137,6 @@ export default {
   border-top-left-radius: 0;
 }
 
-/* Video YouTube */
-.youtube-video {
-  flex: 1;
-  min-width: 30%;
-  max-width: 30%;
-  height: 200px;
-  border-radius: 8px;
-}
-
-/* Căn chỉnh hàng ngang cho 3 video */
-.youtube-container {
-  display: flex;
-  justify-content: space-around;
-  gap: 10px;
-  flex-wrap: wrap;
-}
 
 /* Phản hồi bot toàn màn hình */
 .full-width {
