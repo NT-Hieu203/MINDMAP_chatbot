@@ -1,15 +1,30 @@
 from flask import Flask, request, jsonify
 from flask_cors import CORS
+from openai import OpenAI
+from owlready2 import *
+from dotenv import load_dotenv
 from LLMquery import *
 import json
 import time
-from random import sample
+import os
+from sentence_transformers import SentenceTransformer
+
 app = Flask(__name__)
 CORS(app)
 
+load_dotenv(dotenv_path="secrect.env")
+OPENAI_API_KEY= os.getenv('OPENAI_API_KEY')
+client = OpenAI(api_key = OPENAI_API_KEY)
+
+ONTO_AVAILABLE_PATH = "static/MINDMAP.owl"
+name_ontology = ONTO_AVAILABLE_PATH.split('/')[-1].split('.')[0]
+ontology_available = get_ontology(ONTO_AVAILABLE_PATH).load()
+model_embedding_name = 'paraphrase-multilingual-MiniLM-L12-v2'
+model_embedding = SentenceTransformer(model_embedding_name)
+
 chat_histories = {}
 user_id = '234'
-name_ontology = 'MINDMAP'
+
 @app.route("/chat", methods=["POST"])
 def chat():
     if user_id not in chat_histories:
@@ -19,13 +34,13 @@ def chat():
     question = data.get("message", "")
     
     start_time = time.time()
-    relation = find_relation(onto)
+    relation = find_relation(ontology_available)
     print("\n====================== ENTITIES ==============================")
-    entities_with_annotation_sumarry = get_entities_with_annotation(onto, 'summary')
+    entities_with_annotation_sumarry = get_entities_with_annotation(ontology_available, 'summary')
     explication = create_explication(entities_with_annotation_sumarry)
-    entities = find_entities_from_question_PP1(relation,explication, question, chat_histories[user_id])
+    entities = find_entities_from_question_PP1(client, relation,explication, question, chat_histories[user_id])
 
-    list_query = create_query(name_ontology, json.loads(entities) )
+    list_query = create_query(ontology_available, name_ontology, json.loads(entities) )
     print("list_query: ", list_query)
 
     print("\n====================== KẾT QUẢ TRA CỨU =======================\n")
@@ -38,10 +53,10 @@ def chat():
     except:
         raw_informations_from_ontology.append("Không có thông tin cho câu hỏi")
 
-    k_similar_info = find_similar_info_from_raw_informations(question, raw_informations_from_ontology)
+    k_similar_info = find_similar_info_from_raw_informations(model_embedding, question, raw_informations_from_ontology)
     print("\n====================== SIMILAR INFO ===========================\n")
     print(k_similar_info)
-    bot_response = generate_response(relation , k_similar_info, question, chat_histories[user_id])
+    bot_response = generate_response(client , k_similar_info, question, chat_histories[user_id])
     end_time = time.time()
     print("Thời gian thực thi:", end_time - start_time, "giây")
 

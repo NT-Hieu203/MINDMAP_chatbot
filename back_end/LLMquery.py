@@ -1,28 +1,10 @@
 
 # !pip install -q openai owlready2 rdflib sentence-transformers faiss-cpu
 
-# from google.colab import userdata
-from openai import OpenAI
 from owlready2 import *
-import json
-from dotenv import load_dotenv
-import os
 import faiss
-import types
-import json
 import numpy as np
-from sentence_transformers import SentenceTransformer
-# ontology_path = "/content/VIPRIME.owl"
-# onto = get_ontology(ontology_path).load()
-load_dotenv(dotenv_path="secrect.env")
-OPENAI_API_KEY= os.getenv('OPENAI_API_KEY')
-client = OpenAI(api_key = OPENAI_API_KEY)
 
-ontology_path = "static/MINDMAP.owl"
-name_ontology = ontology_path.split('/')[-1].split('.')[0]
-onto = get_ontology(ontology_path).load()
-
-model_embedding = SentenceTransformer("model_embedding")
 
 """**pp1**: lấy toàn bộ anotation làm chú thích
 **pp2**: embedding anotation để tìm gần với câu hỏi và lấy entity đó
@@ -35,7 +17,7 @@ def get_entities_with_annotation(onto, annotation):
     Tìm tất cả các instances và classes có annotation trong ontology.
 
     Parameters:
-    - onto: Ontology đang làm việc
+    - ontology_available: Ontology đang làm việc
     - annotation: Tên annotation cần tìm
 
     Returns:
@@ -85,7 +67,7 @@ def find_relation(onto):
     Tìm cấu trúc cây phân cấp của ontology và các instances.
 
     Parameters:
-    - onto: Ontology đang làm việc
+    - ontology_available: Ontology đang làm việc
 
     Returns:
     - Dictionary chứa cấu trúc cây ontology
@@ -152,7 +134,7 @@ def create_explication(entities_with_annotation_sumarry : dict):
 
 import json
 
-def find_entities_from_question_PP1(relation, explication, question, chat_history):
+def find_entities_from_question_PP1(client, relation, explication, question, chat_history):
     messages = [
         {
             "role": "system",
@@ -214,7 +196,7 @@ def find_entities_from_question_PP1(relation, explication, question, chat_histor
     ]
 
     response = client.chat.completions.create(
-        model='gpt-4o',
+        model='gpt-4o-mini',
         temperature=0,
         messages=messages
     )
@@ -225,7 +207,7 @@ def get_direct_class_of_individual(onto, individual_name):
     Trả về class cha trực tiếp đầu tiên (rdf:type) của một individual.
 
     Args:
-        onto: Ontology đã load bằng Owlready2.
+        ontology_available: Ontology đã load bằng Owlready2.
         individual_name (str): Tên của individual trong ontology.
 
     Returns:
@@ -263,11 +245,12 @@ def query_all(name_ontology, query_all_class_info, value):
     query_all_class_info.append(prefix + query1)
 
 
-def create_query(name_ontology, json_data):
+def create_query(onto, name_ontology, json_data):
     """
     Tổng quát hóa hàm tạo query từ ontology dựa trên json_data.
 
     Args:
+        onto: Ontology đang làm viec
         name_ontology: Tên ontology đang làm việc
         json_data: Dữ liệu JSON chứa các key và list các entity cần truy vấn
 
@@ -355,7 +338,7 @@ def find_question_info(name_ontology, list_query):
 
     return results
 
-def generate_response(relationship ,question_info, question, history ):
+def generate_response(client ,question_info, question, history ):
   system_prompt  = f'''
             Bạn là một agent hữu ích giúp trả lời câu hỏi của người dùng dựa trên thông tin được cung cấp.
             Dựa vào lịch sử cuộc trò chuyện để hiểu rõ hơn ngữ cảnh cuộc trò chuyện.
@@ -385,17 +368,14 @@ def generate_response(relationship ,question_info, question, history ):
       )
   return response.choices[0].message.content
 
-def get_embedding(text, model = "text-embedding-ada-002"):
+def get_embedding( model_embedding, text):
     # return model.encode(text)
-    response = client.embeddings.create(
-        input = text, # Input should be a list of strings
-        model = model
-    )
+    vector_embedding = model_embedding.encode( text, show_progress_bar=True)
     # The response data will be a list of embedding objects, each with a 'embedding' attribute
-    return [d.embedding for d in response.data]
+    return vector_embedding
 
-def find_similar_info_from_raw_informations(question, result_from_ontology, k = 5):
-    embeddings_list = get_embedding(result_from_ontology)
+def find_similar_info_from_raw_informations(model_embedding, question, result_from_ontology, k = 5):
+    embeddings_list = get_embedding(model_embedding, result_from_ontology)
     embeddings = np.array(embeddings_list, dtype=np.float32)
 
     dimension = embeddings.shape[1]
@@ -405,7 +385,7 @@ def find_similar_info_from_raw_informations(question, result_from_ontology, k = 
     similar_info = []
 
     # Get embedding for the question (which is a single string)
-    question_embedding = get_embedding([question])[0] # Get the single embedding from the list
+    question_embedding = get_embedding(model_embedding, [question])[0] # Get the single embedding from the list
     query_embedding = np.array(question_embedding, dtype=np.float32).reshape(1, -1) # Reshape for FAISS search
 
     distances, indices = index.search(query_embedding, k)
