@@ -8,7 +8,7 @@ class ClusteringTreeBuilder:
         self.current_index = 0  # Index hiện tại cho node mới
         self.round_mapping = {}  # Mapping giữa các vòng
 
-    def add_initial_paragraphs(self, paragraphs):
+    def add_initial_paragraphs(self,client, paragraphs):
         """
         Thêm các đoạn văn ban đầu vào cây (các node lá)
         """
@@ -19,7 +19,7 @@ class ClusteringTreeBuilder:
                 'index': self.current_index,
                 'parent_index': -1,  # Node gốc không có parent
                 'summarized_paragraph': summarized_paragraph,
-                'keyword': extract_key_word(summarized_paragraph),
+                'keyword': extract_key_word(client, summarized_paragraph),
                 'type': 'leaf_node',  # Loại: đoạn văn gốc
                 'round': 0,  # Vòng 0 = dữ liệu ban đầu
                 'cluster_id': None,  # Chưa thuộc cụm nào

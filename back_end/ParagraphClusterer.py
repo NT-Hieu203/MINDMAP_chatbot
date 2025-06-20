@@ -1,4 +1,4 @@
-from sentence_transformers import SentenceTransformer
+
 from sklearn.cluster import MiniBatchKMeans
 from sklearn.preprocessing import normalize
 from sklearn.decomposition import PCA
@@ -277,15 +277,15 @@ class ParagraphClusterer:
             inertias.append(mb_kmeans.inertia_)
             print(f"  Đã tính WCSS cho k={k}: {mb_kmeans.inertia_:.2f}")
 
-        # Vẽ biểu đồ Elbow
-        plt.figure(figsize=(10, 6))
-        plt.plot(list(k_range)[:len(inertias)], inertias, marker='o', linestyle='-')
-        plt.title('Phương pháp Elbow để tìm số cụm tối ưu (WCSS vs. Số cụm K)')
-        plt.xlabel('Số cụm (K)')
-        plt.ylabel('Tổng bình phương khoảng cách trong cụm (WCSS/Inertia)')
-        plt.xticks(list(k_range)[:len(inertias)]) # Đảm bảo các nhãn x đúng với k
-        plt.grid(True)
-        plt.show()
+        # # Vẽ biểu đồ Elbow
+        # plt.figure(figsize=(10, 6))
+        # plt.plot(list(k_range)[:len(inertias)], inertias, marker='o', linestyle='-')
+        # plt.title('Phương pháp Elbow để tìm số cụm tối ưu (WCSS vs. Số cụm K)')
+        # plt.xlabel('Số cụm (K)')
+        # plt.ylabel('Tổng bình phương khoảng cách trong cụm (WCSS/Inertia)')
+        # plt.xticks(list(k_range)[:len(inertias)]) # Đảm bảo các nhãn x đúng với k
+        # plt.grid(True)
+        # plt.show()
 
         return inertias
 

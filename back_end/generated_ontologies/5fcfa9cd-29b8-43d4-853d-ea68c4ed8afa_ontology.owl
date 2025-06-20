@@ -1,0 +1,46 @@
+<?xml version="1.0"?>
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+         xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+         xmlns:owl="http://www.w3.org/2002/07/owl#"
+         xml:base="http://www.semanticweb.org/MINDMAP_CLUSTER"
+         xmlns="http://www.semanticweb.org/MINDMAP_CLUSTER#">
+
+<owl:Ontology rdf:about="http://www.semanticweb.org/MINDMAP_CLUSTER"/>
+
+<owl:AnnotationProperty rdf:about="#summary"/>
+
+<owl:AnnotationProperty rdf:about="#summary_embeddings"/>
+
+<owl:Class rdf:about="#Đầu_hàng_Nhật_Bản_và_can_thiệp_của_quân_Tưởng">
+  <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+  <summary rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Ngày 28-9-1945, lễ đầu hàng của quân đội Nhật trước Đồng minh diễn ra tại Hà Nội, do tướng Lư Hán chủ trì. Mặc dù tuyên bố không can thiệp vào chủ quyền Việt Nam, quân đội Trung Hoa (quân Tưởng) thực tế lại hỗ trợ các lực lượng phản động như Việt Quốc và Việt Cách nhằm lật đổ chính quyền dân chủ cộng hòa mới thành lập. Họ chiếm giữ một số khu vực và tiến hành các hoạt động chống đối, gây rối loạn và khó khăn cho chính quyền cách mạng và nhân dân Việt Nam.</summary>
+</owl:Class>
+
+<owl:Class rdf:about="#Tuyên_ngôn_độc_lập_Việt_Nam">
+  <rdfs:subClassOf rdf:resource="#Đầu_hàng_Nhật_Bản_và_can_thiệp_của_quân_Tưởng"/>
+  <summary rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Chương I đề cập đến giai đoạn từ khi Việt Nam tuyên bố độc lập đến khi ký Hiệp định sơ bộ Việt - Pháp. Ngày 2-9-1945, tại Quảng trường Ba Đình, Chủ tịch Hồ Chí Minh đọc bản Tuyên ngôn độc lập, khẳng định quyền tự do và độc lập của Việt Nam. Tuy nhiên, nền độc lập này chưa được quốc gia nào công nhận, tạo ra thách thức lớn cho sự phát triển của đất nước. Bối cảnh quốc tế và trong nước đã có những thay đổi quan trọng, ảnh hưởng đến công cuộc xây dựng chế độ mới và bảo vệ độc lập của nhân dân Việt Nam.</summary>
+</owl:Class>
+
+<owl:Class rdf:about="#Hệ_thống_xã_hội_chủ_nghĩa_và_đấu_tranh_giải_phóng_dân_tộc">
+  <rdfs:subClassOf rdf:resource="#Đầu_hàng_Nhật_Bản_và_can_thiệp_của_quân_Tưởng"/>
+  <summary rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Sự hình thành hệ thống xã hội chủ nghĩa do Liên Xô lãnh đạo đã làm thay đổi tương quan chính trị, quân sự và ngoại giao toàn cầu, với Liên Xô trở thành trụ cột trong cuộc đấu tranh vì độc lập dân tộc, dân chủ và hòa bình. Phong trào giải phóng dân tộc và đấu tranh của giai cấp công nhân đã làm suy yếu chủ nghĩa đế quốc, dẫn đến việc các nước đế quốc liên minh để phản công lực lượng cách mạng. Mâu thuẫn giữa các lực lượng hòa bình, dân chủ và xã hội chủ nghĩa do Liên Xô đứng đầu với các nước đế quốc do Mỹ lãnh đạo ngày càng gia tăng. Ngay từ khi ra đời, Việt Nam Dân chủ Cộng hòa đã bị chủ nghĩa đế quốc và các thế lực phản động bao vây, chống phá.</summary>
+</owl:Class>
+
+<owl:Class rdf:about="#Nạn_Tàu_vàng">
+  <rdfs:subClassOf rdf:resource="#Đầu_hàng_Nhật_Bản_và_can_thiệp_của_quân_Tưởng"/>
+  <summary rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Theo Hiệp ước Hội nghị Pôtxđam (17-7 - 2-8-1945), quân Đồng minh được giao nhiệm vụ giải giáp quân đội Nhật, dẫn đến sự xuất hiện của quân Tưởng Giới Thạch tại Việt Nam sau Cách mạng Tháng Tám. Ngày 28-8-1945, Tướng Lư Hán dẫn 200 nghìn quân vào Hà Nội và các thành phố, gây khó khăn cho Chính phủ và nhân dân miền Bắc, được gọi là "Nạn Tàu vàng". Quân Tưởng buộc Việt Nam trưng thu lương thực, yêu cầu cung cấp 10 nghìn tấn gạo mỗi tháng, trong khi nhân dân miền Bắc đang chịu nạn đói nghiêm trọng. Tướng Lư Hán còn ép Việt Nam cho quân lính tiêu đồng bạc Quan kim đã mất giá.</summary>
+</owl:Class>
+
+<owl:Class rdf:about="#Lễ_đầu_hàng_Nhật_Bản_1945">
+  <rdfs:subClassOf rdf:resource="#Đầu_hàng_Nhật_Bản_và_can_thiệp_của_quân_Tưởng"/>
+  <summary rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Ngày 28-9-1945, lễ đầu hàng của quân đội Nhật trước Đồng minh diễn ra tại Hà Nội, do tướng Lư Hán chủ trì. Mặc dù tuyên bố không can thiệp vào chủ quyền Việt Nam, quân đội Trung Hoa (quân Tưởng) thực tế lại hỗ trợ các lực lượng phản động như Việt Quốc và Việt Cách nhằm lật đổ chính quyền dân chủ cộng hòa mới thành lập. Họ chiếm giữ một số khu vực và tiến hành các hoạt động chống đối, gây rối loạn và khó khăn cho chính quyền cách mạng và nhân dân Việt Nam.</summary>
+</owl:Class>
+
+<owl:Class rdf:about="#Tình_hình_miền_Nam_Việt_Nam_1945">
+  <rdfs:subClassOf rdf:resource="#Đầu_hàng_Nhật_Bản_và_can_thiệp_của_quân_Tưởng"/>
+  <summary rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Tình hình ở miền Nam Việt Nam vào năm 1945 nghiêm trọng hơn miền Bắc, với ý đồ xâm chiếm trở lại của thực dân Pháp ngày càng rõ ràng. Chính phủ Pháp nhận thấy cần thay đổi chính sách để giữ Đông Dương. Ngày 17-8-1945, ủy ban quốc phòng Pháp quyết định thành lập lực lượng viễn chinh tại Viễn Đông, bao gồm Sư đoàn bộ binh số 9 do Tướng Valluy chỉ huy, Sư đoàn thiết giáp do Massu chỉ huy và Sư đoàn bộ binh thuộc địa số 3.</summary>
+</owl:Class>
+
+
+</rdf:RDF>

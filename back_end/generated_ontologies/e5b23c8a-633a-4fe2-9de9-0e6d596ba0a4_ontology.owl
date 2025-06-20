@@ -1,0 +1,76 @@
+<?xml version="1.0"?>
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+         xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+         xmlns:owl="http://www.w3.org/2002/07/owl#"
+         xml:base="http://www.semanticweb.org/MINDMAP_CLUSTER"
+         xmlns="http://www.semanticweb.org/MINDMAP_CLUSTER#">
+
+<owl:Ontology rdf:about="http://www.semanticweb.org/MINDMAP_CLUSTER"/>
+
+<owl:AnnotationProperty rdf:about="#summary"/>
+
+<owl:AnnotationProperty rdf:about="#summary_embeddings"/>
+
+<owl:Class rdf:about="#Đầu_hàng_Nhật_Bản_và_can_thiệp_của_quân_Tưởng">
+  <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+  <summary rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Ngày 28-9-1945, lễ đầu hàng của quân đội Nhật trước Đồng minh diễn ra tại Hà Nội, do tướng Lư Hán chủ trì. Ông tuyên bố quân đội Trung Hoa sang Việt Nam chỉ để tiếp nhận sự đầu hàng của Nhật, không can thiệp vào chủ quyền Việt Nam. Tuy nhiên, thực tế quân Tưởng đã hỗ trợ các lực lượng phản động như Việt Quốc và Việt Cách, nhằm lật đổ chính quyền dân chủ cộng hòa mới thành lập. Họ chiếm giữ một số khu vực và tiến hành các hoạt động chống lại Việt Minh, gây khó khăn cho chính quyền cách mạng và nhân dân Việt Nam.</summary>
+</owl:Class>
+
+<owl:Class rdf:about="#Hệ_thống_xã_hội_chủ_nghĩa_và_ảnh_hưởng_của_Liên_Xô">
+  <rdfs:subClassOf rdf:resource="#Đầu_hàng_Nhật_Bản_và_can_thiệp_của_quân_Tưởng"/>
+  <summary rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Sự hình thành hệ thống xã hội chủ nghĩa do Liên Xô lãnh đạo đã làm thay đổi tương quan chính trị, quân sự và ngoại giao toàn cầu, với Liên Xô trở thành trụ cột trong cuộc đấu tranh vì độc lập dân tộc, dân chủ và hòa bình. Phong trào giải phóng dân tộc và đấu tranh của giai cấp công nhân đã làm suy yếu chủ nghĩa đế quốc, dẫn đến việc các nước đế quốc liên minh để phản công lực lượng cách mạng. Mâu thuẫn giữa các lực lượng hòa bình, dân chủ và xã hội chủ nghĩa do Liên Xô đứng đầu với các nước đế quốc do Mỹ lãnh đạo ngày càng gia tăng. Ngay từ khi ra đời, Việt Nam Dân chủ Cộng hòa đã bị chủ nghĩa đế quốc và các thế lực phản động bao vây, chống phá.</summary>
+</owl:Class>
+
+<owl:Class rdf:about="#Hệ_thống_xã_hội_chủ_nghĩa_và_đấu_tranh_giải_phóng_dân_tộc">
+  <rdfs:subClassOf rdf:resource="#Hệ_thống_xã_hội_chủ_nghĩa_và_ảnh_hưởng_của_Liên_Xô"/>
+  <summary rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Sự hình thành hệ thống xã hội chủ nghĩa do Liên Xô lãnh đạo đã làm thay đổi tương quan chính trị, quân sự và ngoại giao toàn cầu, với Liên Xô trở thành trụ cột trong cuộc đấu tranh vì độc lập dân tộc, dân chủ và hòa bình. Phong trào giải phóng dân tộc và đấu tranh của giai cấp công nhân đã làm suy yếu chủ nghĩa đế quốc, dẫn đến việc các nước đế quốc liên minh để phản công lực lượng cách mạng. Mâu thuẫn giữa các lực lượng hòa bình, dân chủ và xã hội chủ nghĩa do Liên Xô đứng đầu với các nước đế quốc do Mỹ lãnh đạo ngày càng gia tăng. Ngay từ khi ra đời, Việt Nam Dân chủ Cộng hòa đã bị chủ nghĩa đế quốc và các thế lực phản động bao vây, chống phá.</summary>
+</owl:Class>
+
+<owl:Class rdf:about="#Khôi_phục_chủ_quyền_Pháp_ở_Đông_Dương">
+  <rdfs:subClassOf rdf:resource="#Đầu_hàng_Nhật_Bản_và_can_thiệp_của_quân_Tưởng"/>
+  <summary rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Cao ủy D'Argenlieu và Tư lệnh tối cao Leclerc được De Gaulle chỉ đạo khôi phục chủ quyền Pháp tại Liên bang Đông Dương mà không cam kết với Việt Minh. Thời điểm này, Bắc Đông Dương có khoảng 30 nghìn người Pháp, trong đó 20 nghìn bị quân Nhật bắt tại Hà Nội từ ngày 9-3-1945, số còn lại sống tại các trung tâm như Huế, Đà Nẵng, Vinh, Thanh Hóa, Nam Định, Hải Phòng, Hòn Gai.</summary>
+</owl:Class>
+
+<owl:Class rdf:about="#Tình_hình_miền_Nam_Việt_Nam_1945">
+  <rdfs:subClassOf rdf:resource="#Khôi_phục_chủ_quyền_Pháp_ở_Đông_Dương"/>
+  <summary rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Tình hình ở miền Nam Việt Nam năm 1945 nghiêm trọng hơn miền Bắc, với thực dân Pháp có ý đồ xâm chiếm trở lại. Chính phủ Pháp nhận thấy cần thay đổi chính sách để giữ Đông Dương. Ngày 17-8-1945, ủy ban quốc phòng Pháp quyết định thành lập lực lượng viễn chinh do Tướng Leclerc chỉ huy, nhằm quay lại Đông Dương. Sau cuộc Cách mạng Tháng Tám, nhân dân Việt Nam giành quyền kiểm soát, nhưng Pháp vẫn tìm cách khôi phục quyền lực với sự hỗ trợ từ Mỹ và Anh. Leclerc lập kế hoạch chiếm lại Đông Dương, bao gồm việc dựa vào quân Anh, thả quân và nhân viên dân sự xuống miền Bắc, và thương thuyết với người bản xứ. Cédille, ủy viên Cộng hòa Pháp tại Nam Đông Dương, đã bí mật đàm phán với ủy ban nhân dân Nam Bộ nhưng không đề cập đến độc lập của Việt Nam.</summary>
+</owl:Class>
+
+<owl:Class rdf:about="#Bắt_giữ_Messmer_và_kháng_chiến_chống_Pháp">
+  <rdfs:subClassOf rdf:resource="#Khôi_phục_chủ_quyền_Pháp_ở_Đông_Dương"/>
+  <summary rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Vào ngày 22-8-1945, Messmer, ủy viên Cộng hòa Pháp tại Bắc Kỳ, đã bị quân ta bắt giữ khi nhảy dù xuống Tam Đảo. Sau cuộc đảo chính 9-3-1945 của Nhật, hai tàu Pháp đã trở lại Việt Nam, đổ quân lên đảo Cô Tô và Vạn Hoa. Các tàn binh Pháp từ Trung Lào và Hạ Lào cũng chiếm đóng một số điểm trên các trục đường số 7, 8, 9, 12, tìm cách tiến vào Bắc Trung Bộ. Pháp yêu cầu Chính phủ Tưởng Giới Thạch cho quân đội Alessandri trở lại Tây Bắc. Lực lượng vũ trang địa phương đã tích cực đánh địch, chặn đánh các tàu Crayssac và Frénohls ở Vạn Hoa và Cô Tô, với tàu Crayssac bị quân ta chiếm. Giải phóng quân Nghệ An, Hà Tĩnh và Quảng Trị phối hợp với bộ đội Lào chặn đánh quân Pháp, ngăn không cho chúng tiến vào Bắc Trung Bộ.</summary>
+</owl:Class>
+
+<owl:Class rdf:about="#Hội_nghị_Hà_Nội_1945">
+  <rdfs:subClassOf rdf:resource="#Khôi_phục_chủ_quyền_Pháp_ở_Đông_Dương"/>
+  <summary rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Ngày 22-8-1945, đại diện Pháp Sainteny cùng với phái đoàn Mỹ do Trung úy Patti dẫn đầu đã đến Hà Nội. Họ bị quân Nhật giam giữ tại Phủ Toàn quyền. Ngày 27-8, Hồ Chí Minh cử Võ Nguyên Giáp đến gặp Sainteny để thông báo về Chính phủ lâm thời Việt Nam. Sainteny khẳng định Đông Dương vẫn thuộc Pháp, nhưng trong bức điện gửi về Calcutta ngày 28-8, ông thừa nhận miền Bắc Đông Dương không còn là thuộc Pháp. Sainteny cũng đề cập đến việc quân Trung Quốc sẽ vào giải giáp quân Nhật.</summary>
+</owl:Class>
+
+<owl:Class rdf:about="#Khôi_phục_chủ_quyền_Pháp_tại_Đông_Dương">
+  <rdfs:subClassOf rdf:resource="#Khôi_phục_chủ_quyền_Pháp_ở_Đông_Dương"/>
+  <summary rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Cao ủy D'Argenlieu và Tư lệnh tối cao Leclerc được De Gaulle chỉ đạo khôi phục chủ quyền Pháp tại Liên bang Đông Dương mà không cam kết với Việt Minh. Thời điểm này, Bắc Đông Dương có khoảng 30 nghìn người Pháp, trong đó 20 nghìn bị quân Nhật bắt tại Hà Nội từ ngày 9-3-1945, số còn lại sống tại các trung tâm như Huế, Đà Nẵng, Vinh, Thanh Hóa, Nam Định, Hải Phòng, Hòn Gai.</summary>
+</owl:Class>
+
+<owl:Class rdf:about="#Đầu_hàng_Nhật_Bản_và_can_thiệp_của_quân_Tưởng_1">
+  <rdfs:subClassOf rdf:resource="#Đầu_hàng_Nhật_Bản_và_can_thiệp_của_quân_Tưởng"/>
+  <summary rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Ngày 28-9-1945, lễ đầu hàng của quân đội Nhật trước Đồng minh diễn ra tại Hà Nội, do tướng Lư Hán chủ trì. Ông tuyên bố quân đội Trung Hoa sang Việt Nam chỉ để tiếp nhận sự đầu hàng của Nhật, không can thiệp vào chủ quyền Việt Nam. Tuy nhiên, thực tế quân Tưởng đã hỗ trợ các lực lượng phản động như Việt Quốc và Việt Cách, nhằm lật đổ chính quyền dân chủ cộng hòa mới thành lập. Họ chiếm giữ một số khu vực và tiến hành các hoạt động chống lại Việt Minh, gây khó khăn cho chính quyền cách mạng và nhân dân Việt Nam.</summary>
+</owl:Class>
+
+<owl:Class rdf:about="#Tuyên_ngôn_độc_lập_Việt_Nam">
+  <rdfs:subClassOf rdf:resource="#Đầu_hàng_Nhật_Bản_và_can_thiệp_của_quân_Tưởng_1"/>
+  <summary rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Chương I đề cập đến giai đoạn từ khi Việt Nam tuyên bố độc lập đến khi ký Hiệp định sơ bộ Việt - Pháp. Ngày 2-9-1945, tại Quảng trường Ba Đình, Chủ tịch Hồ Chí Minh đọc bản Tuyên ngôn độc lập, khẳng định quyền tự do và độc lập của Việt Nam. Tuy nhiên, nền độc lập này chưa được quốc gia nào công nhận, tạo ra nguy cơ cho sự tồn tại của nước Việt Nam dân chủ cộng hòa. Bối cảnh quốc tế và trong nước đã có những thay đổi lớn, ảnh hưởng đến công cuộc xây dựng chế độ mới và bảo vệ độc lập của nhân dân Việt Nam.</summary>
+</owl:Class>
+
+<owl:Class rdf:about="#Nạn_Tàu_vàng">
+  <rdfs:subClassOf rdf:resource="#Đầu_hàng_Nhật_Bản_và_can_thiệp_của_quân_Tưởng_1"/>
+  <summary rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Theo Hiệp ước Pôtxđam (17-7 - 2-8-1945), quân Đồng minh được giao nhiệm vụ giải giáp quân đội Nhật, và sau Cách mạng Tháng Tám, quân Tưởng Giới Thạch do Tướng Lư Hán chỉ huy đã vào Việt Nam ngày 28-8-1945 với khoảng 200 nghìn quân. Đội quân này gây khó khăn cho Chính phủ và nhân dân miền Bắc, được gọi là "Nạn Tàu vàng", và buộc Việt Nam phải trưng thu lương thực, yêu cầu cung cấp 10 nghìn tấn gạo mỗi tháng trong bối cảnh nạn đói nghiêm trọng. Tướng Lư Hán còn ép Việt Nam cho quân lính tiêu đồng bạc Quan kim đã mất giá.</summary>
+</owl:Class>
+
+<owl:Class rdf:about="#Đầu_hàng_Nhật_Bản_1945">
+  <rdfs:subClassOf rdf:resource="#Đầu_hàng_Nhật_Bản_và_can_thiệp_của_quân_Tưởng_1"/>
+  <summary rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Ngày 28-9-1945, lễ đầu hàng của quân đội Nhật trước Đồng minh diễn ra tại Hà Nội, do tướng Lư Hán chủ trì. Ông tuyên bố quân đội Trung Hoa sang Việt Nam chỉ để tiếp nhận sự đầu hàng của Nhật, không can thiệp vào chủ quyền Việt Nam. Tuy nhiên, thực tế quân Tưởng đã hỗ trợ các lực lượng phản động như Việt Quốc và Việt Cách, nhằm lật đổ chính quyền dân chủ cộng hòa mới thành lập. Họ chiếm giữ một số khu vực và tiến hành các hoạt động chống lại Việt Minh, gây khó khăn cho chính quyền cách mạng và nhân dân Việt Nam.</summary>
+</owl:Class>
+
+
+</rdf:RDF>

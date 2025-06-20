@@ -225,21 +225,21 @@ def get_direct_class_of_individual(onto, individual_name):
 
 
 def query_all(name_ontology, query_all_class_info, value):
-    prefix = '''
+    prefix = f'''
         PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
         PREFIX owl: <http://www.w3.org/2002/07/owl#>
         PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
         PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
-        PREFIX mindmap: <http://www.semanticweb.org/MINDMAP#>
+        PREFIX {name_ontology}: <http://www.semanticweb.org/MINDMAP#>
     '''
-
-    class_name = str(value).replace(f"{name_ontology}.", "")
+    class_name = str(value).split('\\')[-1]
+    class_name = class_name.replace(f"{name_ontology}.", "")
 
     # Truy vấn tất cả thông tin của class (predicate và giá trị)
     query1 = f'''
         SELECT ?summary
         WHERE {{
-          mindmap:{class_name} mindmap:summary ?summary .
+          {name_ontology}:{class_name} {name_ontology}:summary ?summary .
         }}
     '''
     query_all_class_info.append(prefix + query1)
@@ -268,7 +268,7 @@ def create_query(onto, name_ontology, json_data):
         for value in values:
             # Lấy thực thể từ ontology
             entity = onto.search_one(iri="*" + value)
-            print(entity)
+            print("sau hàm search: ", entity)
             if entity is None:
                 print(f"[!] Không tìm thấy '{value}' trong ontology.")
                 continue
@@ -276,7 +276,6 @@ def create_query(onto, name_ontology, json_data):
             # Nếu là class, xử lý bình thường
             if isinstance(entity, ThingClass):
                 children = onto.get_children_of(entity)
-                print(children)
                 query_all(name_ontology, query_all_class_info, entity)
                 for child in children:
                     query_all(name_ontology, query_all_class_info, child)

@@ -2,7 +2,7 @@ from ParagraphClusterer import *
 from ClusteringTreeBuilder import *
 from PDF_Processor import *
 from FindOptimalK import *
-def run_clustering_with_tree_building(model_embedding,merged_result2, clustering_strategy='adaptive'):
+def run_clustering_with_tree_building(client, model_embedding, list_node , clustering_strategy='adaptive'):
     """
     Chạy phân cụm và xây dựng cây đồng thời
     """
@@ -11,21 +11,21 @@ def run_clustering_with_tree_building(model_embedding,merged_result2, clustering
     tree_builder = ClusteringTreeBuilder()
 
     # Dữ liệu ban đầu
-    initial_paragraphs = [paragraph['full_text'] for paragraph in merged_result2]
+    initial_paragraphs = [paragraph['full_text'] for paragraph in list_node]
 
     initial_summarized_paragraphs = []
     for full_paragraph in initial_paragraphs:
-        summarized_paragraph = summary_paragraph( full_paragraph )
+        summarized_paragraph = summary_paragraph(client, full_paragraph )
         initial_summarized_paragraphs.append(summarized_paragraph)
 
     list_paragraphs = initial_summarized_paragraphs.copy()
-    list_keywords = [extract_key_word(paragraph) for paragraph in initial_paragraphs]
+    list_keywords = [extract_key_word(client, paragraph) for paragraph in initial_paragraphs]
 
     print(f"🚀 BẮT ĐẦU PHÂN CỤM VÀ XÂY DỰNG CÂY")
     print(f"Số đoạn văn ban đầu: {len(initial_paragraphs)}")
 
     # Thêm các đoạn văn ban đầu vào cây, các nút lá
-    current_indices = tree_builder.add_initial_paragraphs(initial_summarized_paragraphs)
+    current_indices = tree_builder.add_initial_paragraphs(client, paragraphs= initial_summarized_paragraphs)
 
     round_count = 1
 
@@ -83,12 +83,12 @@ def run_clustering_with_tree_building(model_embedding,merged_result2, clustering
             print("\n⚠️ Đã chạy quá 20 vòng - Dừng để tránh vô hạn")
             break
 
-    # Hiển thị kết quả
-    tree_builder.print_tree_summary()
-    tree_builder.visualize_tree_structure()
-
-    # Xuất file
-    # json_file = tree_builder.export_to_json()
+    # # Hiển thị kết quả
+    # tree_builder.print_tree_summary()
+    # tree_builder.visualize_tree_structure()
+    #
+    # # Xuất file
+    # # json_file = tree_builder.export_to_json()
 
     return {
         'tree': tree_builder.get_tree_structure(),

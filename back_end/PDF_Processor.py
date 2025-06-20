@@ -182,7 +182,7 @@ def process_pdf_page(docs, model_detect_layout, pdf_page_data, continue_index):
     print(f"\n--- Xử lý trang: {page_index} ---")
 
     # 1. Phát hiện bố cục
-    layout_results = detect_layout(pil_image)
+    layout_results = detect_layout(model_detect_layout, pil_image)
     processed_paragraphs = []
 
     print("\n  >>> Kết quả phát hiện bố cục:")
@@ -221,7 +221,7 @@ def process_pdf_page(docs, model_detect_layout, pdf_page_data, continue_index):
             img_np = np.array(image_cut)
 
             # 4. Nhận dạng văn bản
-            # recognized_text_results = recognize_text_from_image(img_np)
+            # recognized_text_results = recognize_text_from_image(reader, img_np)
             lable_from_pymupdf, recognized_text_results = recognize_text_from_pymupdf_page(docs, page_index, bbox)
 
             # 5. Tạo thông tin paragraph
@@ -253,7 +253,7 @@ def process_pdf_page(docs, model_detect_layout, pdf_page_data, continue_index):
     return continue_index, processed_paragraphs
 
 
-def process_full_pdf(pdf_path):
+def process_full_pdf(model_detect_layout, reader, pdf_path):
     """
     Xử lý toàn bộ file PDF: chuyển đổi, phát hiện bố cục và nhận dạng văn bản từng trang.
     Args:
@@ -279,7 +279,7 @@ def process_full_pdf(pdf_path):
 
         try:
             # Xử lý trang và nhận kết quả
-            continue_index, page_paragraphs = process_pdf_page(documents, page_data, continue_index)
+            continue_index, page_paragraphs = process_pdf_page(documents, model_detect_layout, page_data, continue_index)
 
             # Thêm paragraphs vào danh sách tổng
             all_paragraphs.extend(page_paragraphs)
@@ -292,12 +292,52 @@ def process_full_pdf(pdf_path):
 
     # Tạo thống kê tổng quan
     total_paragraphs = len(all_paragraphs)
-
-
     return {
         "pdf_path": pdf_path,
         "total_pages": total_pages,
         "total_paragraphs": total_paragraphs,
         "all_paragraphs": all_paragraphs,
-
     }
+
+def merge_short_paragraphs(pdf_result_all_paragraphs, n_word=200):
+    """
+    Gộp các đoạn văn bản ngắn (dưới n_word từ) với đoạn văn bản kế tiếp nó.
+    Hàm sẽ thay đổi trực tiếp list đầu vào và giảm số lượng phần tử.
+
+    Args:
+        pdf_result_all_paragraphs (list): List các dictionary, mỗi dictionary là một đoạn.
+                                          Mỗi dict phải có key 'full_text'.
+        n_word (int): Ngưỡng số từ. Nếu đoạn có ít hơn n_word từ, nó sẽ được gộp.
+
+    Returns:
+        list: List đã được gộp. Đây cũng chính là list đã được sửa đổi từ đầu vào.
+    """
+    # Tạo một bản sao để không làm thay đổi list gốc bên ngoài hàm nếu không muốn
+    paragraphs = list(pdf_result_all_paragraphs)
+
+    i = 0
+    # Dùng 'while' vì độ dài của list sẽ thay đổi trong quá trình lặp
+    while i < len(paragraphs) - 1:
+        current_paragraph = paragraphs[i]
+
+        # Đếm số từ trong đoạn hiện tại
+        word_count = len(current_paragraph.get('full_text', '').split())
+
+        # Nếu đoạn hiện tại ngắn, gộp nó với đoạn kế tiếp
+        if word_count < n_word:
+            next_paragraph = paragraphs[i + 1]
+
+            # Gộp text của đoạn sau vào đoạn hiện tại
+            current_paragraph['full_text'] += " " + next_paragraph.get('full_text', '')
+
+            # Xóa đoạn kế tiếp khỏi list sau khi đã gộp
+            paragraphs.pop(i + 1)
+
+            # QUAN TRỌNG: Không tăng 'i'
+            # Giữ nguyên 'i' để kiểm tra lại chính đoạn vừa được gộp
+            # vì nó có thể vẫn còn ngắn và cần gộp tiếp với đoạn sau nữa.
+        else:
+            # Nếu đoạn hiện tại đã đủ dài, chuyển sang kiểm tra đoạn tiếp theo
+            i += 1
+
+    return paragraphs
